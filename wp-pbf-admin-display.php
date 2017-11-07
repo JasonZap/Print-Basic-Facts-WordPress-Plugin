@@ -45,7 +45,7 @@
 <pre><h3>Display File System for: <?php $pwd = shell_exec('cd .. && pwd');echo $pwd?></h3>
 <?php $list = shell_exec('cd .. && ls -la');echo $list?>
 </pre>
-<pre><?php $page_ids=get_all_page_ids();echo '<h3>My Page List :</h3>';foreach($page_ids as $page){$uri = get_page$;echo '<br/>'.get_the_title($page);$uri = get_page_uri($page);$echo '<a href="'. $uri .'"> - Link to page</a>'}?></pre>
+<pre><?php $page_ids=get_all_page_ids();echo '<h3>My Page List :</h3>';foreach($page_ids as $page){$uri = get_pageuri($page);echo '<br/>'.get_the_title($page);echo '<a href="'. $uri .'"> - Link to page</a>';} ?></pre>
 </div>
 </div>
 
