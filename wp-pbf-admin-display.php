@@ -21,25 +21,28 @@
         exit; // Exit if accessed directly
     }
 ?>
+<?php require_once(ABSPATH . 'wp-config.php');?>
 
 <div class="wrap">
-<h2>Display System Resource Usage</h2>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<h1>WordPress Print Basic Facts</h1>
+<div class="col-xs-6">
+
+<pre><h3>Display System Resource Usage</h3>
         <?php $output = shell_exec('ps aux');
-        echo "<pre>$output</pre>";
-        require_once(ABSPATH . 'wp-config.php');
-        ?>
-<br><h2>Connection Strings</h2>
-        <?php echo "Database Name: "; echo DB_NAME;?>
-<br>
-        <?php echo "Database User: "; echo DB_USER;?>
-<br>
-        <?php echo "Database Password: "; echo DB_PASSWORD;?>
-<br>
-        <?php echo "Database Host: "; echo DB_HOST;?>
-<br>
-        <?php echo "WP Debug Enabled: "; echo WP_DEBUG;?>
-<br>
+        echo $output;
+        ?></pre>
+<pre><h3>Connection Strings</h3>
+<?php echo "Database Name: "; echo DB_NAME;?><br>
+<?php echo "Database User: "; echo DB_USER;?><br>
+<?php echo "Database Password: "; echo DB_PASSWORD;?><br>
+<?php echo "Database Host: "; echo DB_HOST;?><br>
+<?php echo "WP Debug Enabled: "; echo WP_DEBUG;?></pre>
 
-
-
+</div>
+<div class="col-xs-6">
+<pre><h3>Display File System for: <?php $pwd = shell_exec('cd .. && pwd');echo $pwd?></h3>
+<?php $list = shell_exec('cd .. && ls -la');echo $list?>
+</pre>
+</div>
 </div>
