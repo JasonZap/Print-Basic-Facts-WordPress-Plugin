@@ -38,14 +38,38 @@
 <?php echo "WP Debug Enabled: "; echo WP_DEBUG;?><br>
 <?php echo "Site URL: ";echo site_url();?><br>
 <?php echo "Number of Database Queries: ";echo get_num_queries();?><br>
-<?php echo "Current PHP Version: ";echo phpversion()?><br></pre>
+<?php echo "Current PHP Version: ";echo phpversion()?><br>
+<?php echo "Current WP Version: ";global $wp_version;echo $wp_version?><br>
+<?php echo "Current DB Version: ";global $wp_db_version;echo $wp_db_version?><br>
+</pre>
 
-</div>
+    
+// Shell exec tool to show the contents for WP Install dir. 
+// Will show permissions and hidden files.
 <div class="col-xs-6">
 <pre><h3>Display File System for: <?php $pwd = shell_exec('cd .. && pwd');echo $pwd?></h3>
-<?php $list = shell_exec('cd .. && ls -la');echo $list?>
-</pre>
+<?php $list = shell_exec('cd .. && ls -la');echo $list?></pre>
+//Ending the shell exec tool for listing dir.    
+    
+// This block uses WordPress functions to show all pages and return links for the returned pages.
+    //Still to fix - Links not functional for posts still in draft/not published. - Should null these.
 <pre><?php $page_ids=get_all_page_ids();echo '<h3>My Page List :</h3>';foreach($page_ids as $page){$uri = get_pageuri($page);echo '<br/>'.get_the_title($page);echo '<a href="'. $uri .'"> - Link to page</a>';} ?></pre>
+// This block is ended. 
+    
+// Here we have a block dedicated to showing all admin users.
+<pre><h3>Admin Users List</h3><?php
+// The Query for admin users
+$user_query = new WP_User_Query( array( 'role' => 'Administrator' ) );
+// User Loop - to pull all active users.
+if ( ! empty( $user_query->results ) ) {
+        foreach ( $user_query->results as $user ) {
+                echo '<p>' . $user->display_name . '</p>';
+        }
+} else {
+        echo 'No users found.';
+}?></pre>
+// End block to show admin users.
+    
 </div>
 </div>
 
