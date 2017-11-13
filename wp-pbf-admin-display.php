@@ -57,19 +57,52 @@
 // This block is ended. 
     
 // Here we have a block dedicated to showing all admin users.
-<pre><h3>Admin Users List</h3><?php
+<h3>Admin Users List</h3><?php
 // The Query for admin users
 $user_query = new WP_User_Query( array( 'role' => 'Administrator' ) );
 // User Loop - to pull all active users.
 if ( ! empty( $user_query->results ) ) {
-        foreach ( $user_query->results as $user ) {
-                echo '<p>' . $user->display_name . '</p>';
+foreach ( $user_query->results as $user ) {
+echo $user->display_name;
         }
 } else {
         echo 'No users found.';
-}?></pre>
-// End block to show admin users.
-    
+}?>
+</pre>
+<pre><h3>Database Information - WPDB Object</h3>
+<?php global $wpdb;
+$user_count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->users" );
+echo "<p>User Count is {$user_count}</p>";?>
+</pre>
+
+<pre><h3>Display Inode Count for: <br><?php $inode = shell_exec('cd .. && find . -printf "%h\n" | cut -d/ -f-2 | sort | uniq -c | sort -rn');echo $inode?></h3></pre>
+
+<pre><h3>Total Size of Install Directory</h3><?php
+function dataSize()
+{
+$Bytes = disk_total_space(ABSPATH);
+$Type=array("", "kilo", "mega", "giga", "tera");
+$counter=0;
+while($Bytes>=1024)
+{
+$Bytes/=1024;
+$counter++;
+}
+return("".$Bytes." ".$Type[$counter]."bytes");
+}
+echo dataSize();
+?></pre>
+
+<pre><?php
+$Mydir = ABSPATH;
+
+foreach(glob($Mydir.'*', GLOB_ONLYDIR) as $dir) {
+    $dir = str_replace($Mydir, '', $dir);
+    echo $dir.'<br>';
+}
+?></pre>
+<pre><?php echo realpath(ABSPATH)?></pre>
+<pre><?php print_r(@get_defined_constants());?></pre>>
 </div>
 </div>
 
