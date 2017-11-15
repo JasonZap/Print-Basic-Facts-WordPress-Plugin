@@ -44,11 +44,16 @@ echo ('Managed WP DB Backup Dir: '.MWP_DB_DIR.'<br>');
 echo ('Current wp-content Dir: '.WP_CONTENT_DIR.'<br>');
 echo ('Current Template Path: '.TEMPLATEPATH.'<br>');
 echo ('Current Stylesheet Path: '.STYLESHEETPATH.'<br>');
+echo ('FORCE_SSL_ADMIN status is: '.FORCE_SSL_ADMIN.'<br>');
 echo ('<h4>Software</h4><br>Current PHP Version: '.phpversion().'<br>');
 echo "Current WP Version: ";global $wp_version;echo ($wp_version.'<br>');
 echo "Current DB Version: ";global $wp_db_version;echo ($wp_db_version.'<br>');
+echo ('PHP Specified OS: '.PHP_OS.'<br>');
 ?></pre>
     
+    
+// <pre><?php print_r(@get_defined_constants());?></pre>
+
     
 
     
