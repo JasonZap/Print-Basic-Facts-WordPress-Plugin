@@ -42,6 +42,21 @@
 <?php echo "Current WP Version: ";global $wp_version;echo $wp_version?><br>
 <?php echo "Current DB Version: ";global $wp_db_version;echo $wp_db_version?><br>
 </pre>
+    
+<pre><h3>Connection Facts</h3><?php
+echo "Database Name: "; echo DB_NAME;<br>
+echo "Database User: "; echo DB_USER;<br>
+echo "Database Password: "; echo DB_PASSWORD;<br>
+echo "Database Host: "; echo DB_HOST;<br>
+echo "WP Debug Enabled: "; echo WP_DEBUG;<br>
+echo "Site URL: ";echo site_url();<br>
+echo "Number of Database Queries: ";echo get_num_queries();<br>
+echo "Current PHP Version: ";echo phpversion();<br>
+echo "Current WP Version: ";global $wp_version;echo $wp_version;<br>
+echo "Current DB Version: ";global $wp_db_version;echo $wp_db_version;?><br>
+</pre>
+    
+    
 
     
 // Shell exec tool to show the contents for WP Install dir. 
