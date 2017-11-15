@@ -43,17 +43,25 @@
 <?php echo "Current DB Version: ";global $wp_db_version;echo $wp_db_version?><br>
 </pre>
     
-<pre><h3>Connection Facts</h3><?php
-echo "Database Name: "; echo (DB_NAME.'<br>');
-echo "Database User: "; echo (DB_USER.'<br>');
-echo "Database Password: "; echo (DB_PASSWORD.'<br>');
-echo "Database Host: "; echo (DB_HOST.'<br>');
+<pre><h3>Basic Facts</h3><br><?php
+echo ('<h4>Connection Strings</h4><br>Database Name: '.DB_NAME.'<br>');
+echo ('Database User: '.DB_USER.'<br>');
+echo ('Database Password: '.DB_PASSWORD.'<br><br>');
+echo ('Database Host: '.DB_HOST.'<br>');
 echo "WP Debug Enabled: "; echo (WP_DEBUG.'<br>');
+echo ('WP Defined Absolute Path: '.ABSPATH.'<br>');
 echo "Site URL: ";echo (site_url().'<br>');
-echo "Number of Database Queries: ";echo (get_num_queries().'<br>');
 echo "Current PHP Version: ";echo (phpversion().'<br>');
 echo "Current WP Version: ";global $wp_version;echo ($wp_version.'<br>');
-echo "Current DB Version: ";global $wp_db_version;echo ($wp_db_version.'<br>');?>
+echo "Current DB Version: ";global $wp_db_version;echo ($wp_db_version.'<br>');
+echo "Current Template Path: ";echo (TEMPLATEPATH.'<br>');
+echo "Current Stylesheet Path: ";echo (STYLESHEETPATH.'<br>');
+echo ('Current wp-content Dir: '.WP_CONTENT_DIR.'<br>');
+echo ('<br><h4>Managed WordPress</h4><br>'.'Managed WP Backup Dir: '.MWP_BACKUP_DIR.'<br>');
+echo ('Managed WP DB Backup Dir: '.MWP_DB_DIR.'<br>');
+
+
+?>
 </pre>
     
     
