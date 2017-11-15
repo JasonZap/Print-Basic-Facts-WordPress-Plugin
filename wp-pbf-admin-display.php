@@ -30,39 +30,24 @@
 
 <pre><h3>Display System Resource Usage</h3>
 <?php $output = shell_exec('ps aux');echo $output?></pre>
-<pre><h3>Connection Facts</h3>
-<?php echo "Database Name: "; echo DB_NAME;?><br>
-<?php echo "Database User: "; echo DB_USER;?><br>
-<?php echo "Database Password: "; echo DB_PASSWORD;?><br>
-<?php echo "Database Host: "; echo DB_HOST;?><br>
-<?php echo "WP Debug Enabled: "; echo WP_DEBUG;?><br>
-<?php echo "Site URL: ";echo site_url();?><br>
-<?php echo "Number of Database Queries: ";echo get_num_queries();?><br>
-<?php echo "Current PHP Version: ";echo phpversion()?><br>
-<?php echo "Current WP Version: ";global $wp_version;echo $wp_version?><br>
-<?php echo "Current DB Version: ";global $wp_db_version;echo $wp_db_version?><br>
-</pre>
     
 <pre><h3>Basic Facts</h3><br><?php
 echo ('<h4>Connection Strings</h4><br>Database Name: '.DB_NAME.'<br>');
 echo ('Database User: '.DB_USER.'<br>');
 echo ('Database Password: '.DB_PASSWORD.'<br><br>');
 echo ('Database Host: '.DB_HOST.'<br>');
-echo "WP Debug Enabled: "; echo (WP_DEBUG.'<br>');
+echo ('<h4>WordPress Defined Elements</h4><br>WP Debug Enabled: '.WP_DEBUG.'<br>');
 echo ('WP Defined Absolute Path: '.ABSPATH.'<br>');
-echo "Site URL: ";echo (site_url().'<br>');
-echo "Current PHP Version: ";echo (phpversion().'<br>');
+echo ('Site URL: '.site_url().'<br>');
+echo ('Managed WP Backup Dir: '.MWP_BACKUP_DIR.'<br>');
+echo ('Managed WP DB Backup Dir: '.MWP_DB_DIR.'<br>');
+echo ('Current wp-content Dir: '.WP_CONTENT_DIR.'<br>');
+echo ('Current Template Path: '.TEMPLATEPATH.'<br>');
+echo ('Current Stylesheet Path: '.STYLESHEETPATH.'<br>');
+echo ('<h4>Software</h4><br>Current PHP Version: '.phpversion().'<br>');
 echo "Current WP Version: ";global $wp_version;echo ($wp_version.'<br>');
 echo "Current DB Version: ";global $wp_db_version;echo ($wp_db_version.'<br>');
-echo "Current Template Path: ";echo (TEMPLATEPATH.'<br>');
-echo "Current Stylesheet Path: ";echo (STYLESHEETPATH.'<br>');
-echo ('Current wp-content Dir: '.WP_CONTENT_DIR.'<br>');
-echo ('<br><h4>Managed WordPress</h4><br>'.'Managed WP Backup Dir: '.MWP_BACKUP_DIR.'<br>');
-echo ('Managed WP DB Backup Dir: '.MWP_DB_DIR.'<br>');
-
-
-?>
-</pre>
+?></pre>
     
     
 
