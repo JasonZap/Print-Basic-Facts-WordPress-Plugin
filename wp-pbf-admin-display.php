@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -13,100 +12,99 @@
  * @subpackage Wp_Pbf/admin/partials
  */
 ?>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
-<?php
+<?php 
     if ( ! defined( 'ABSPATH' ) ) {
         exit; // Exit if accessed directly
     }
+
+require_once(ABSPATH . 'wp-config.php');
+include(ABSPATH.'wp-content/plugins/wp-pbf/includes/wp-pbf-functions.php');
+echo systemsCheck();
 ?>
-<?php require_once(ABSPATH . 'wp-config.php');?>
-
-<div class="wrap">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <h1>WordPress Print Basic Facts</h1>
-<div class="col-xs-6">
+<div class="container col-xs-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Display System Resource Usage</div>
+		<div class="panel-body"><pre><?php echo shell_exec('ps aux')?></pre></div>
 
-<pre><h3>Display System Resource Usage</h3>
-<?php $output = shell_exec('ps aux');echo $output?></pre>
-    
-<pre><h3>Basic Facts</h3><br><?php
-echo ('<h4>Connection Strings</h4><br>Database Name: '.DB_NAME.'<br>');
-echo ('Database User: '.DB_USER.'<br>');
-echo ('Database Password: '.DB_PASSWORD.'<br><br>');
-echo ('Database Host: '.DB_HOST.'<br>');
-echo ('<h4>WordPress Defined Elements</h4><br>WP Debug Enabled: '.WP_DEBUG.'<br>');
-echo ('WP Defined Absolute Path: '.ABSPATH.'<br>');
-echo ('Site URL: '.site_url().'<br>');
-echo ('Managed WP Backup Dir: '.MWP_BACKUP_DIR.'<br>');
-echo ('Managed WP DB Backup Dir: '.MWP_DB_DIR.'<br>');
-echo ('Current wp-content Dir: '.WP_CONTENT_DIR.'<br>');
-echo ('Current Template Path: '.TEMPLATEPATH.'<br>');
-echo ('Current Stylesheet Path: '.STYLESHEETPATH.'<br>');
-echo ('FORCE_SSL_ADMIN status is: '.FORCE_SSL_ADMIN.'<br>');
-echo ('<h4>Software</h4><br>Current PHP Version: '.phpversion().'<br>');
-echo "Current WP Version: ";global $wp_version;echo ($wp_version.'<br>');
-echo "Current DB Version: ";global $wp_db_version;echo ($wp_db_version.'<br>');
-echo ('PHP Specified OS: '.PHP_OS.'<br>');
-?></pre>
-    
-    
-// <pre><?php print_r(@get_defined_constants());?></pre>
+		<div class="panel-heading">Basic Facts</div>
+		<div class="panel-body"><?php echo wpBasicFacts()?></div>
 
-    
+		<div class="panel-heading">Display File System for: <?php echo ABSPATH?></div>
+		<div class="panel-body"><pre><?php echo fileSystemShell()?></pre></div>
 
+<div class="panel-heading">Functions</div>
+    <div class="panel-body">
+      <form action="" method="Post">
     
-// Shell exec tool to show the contents for WP Install dir. 
-// Will show permissions and hidden files.
-<div class="col-xs-6">
-<pre><h3>Display File System for: <?php $pwd = shell_exec('cd .. && pwd');echo $pwd?></h3>
-<?php $list = shell_exec('cd .. && ls -la');echo $list?></pre>
-//Ending the shell exec tool for listing dir.    
-    
-// This block uses WordPress functions to show all pages and return links for the returned pages.
-    //Still to fix - Links not functional for posts still in draft/not published. - Should null these.
-<pre><?php $page_ids=get_all_page_ids();echo '<h3>My Page List :</h3>';foreach($page_ids as $page){$uri = get_pageuri($page);echo '<br/>'.get_the_title($page);echo '<a href="'. $uri .'"> - Link to page</a>';} ?></pre>
-// This block is ended. 
-    
-// Here we have a block dedicated to showing all admin users.
-<h3>Admin Users List</h3><?php
-// The Query for admin users
-$user_query = new WP_User_Query( array( 'role' => 'Administrator' ) );
-// User Loop - to pull all active users.
-if ( ! empty( $user_query->results ) ) {
-foreach ( $user_query->results as $user ) {
-echo $user->display_name;
-        }
-} else {
-        echo 'No users found.';
-}?>
-</pre>
-<pre><h3>Database Information - WPDB Object</h3>
-<?php global $wpdb;
-$user_count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->users" );
-echo "<p>User Count is {$user_count}</p>";?>
-</pre>
+  <input type="submit" name="inodes" value="Display Inodes Usage"><br>
+</form>
+<?php 
+if(!is_callable('shell_exec')||(strpos(ini_get('disable_functions'), 'shell_exec') === true)){
+      return '<h3>Shell Features Are Disabled. No Inode Count Functionality!</h3>';
+    } else {
+if (isset($_POST['inodes'])&&!empty($_POST['inodes'])){
+  ?>
+  <pre><?php
+  $safepath=getcwd();
+  chdir(ABSPATH);
+  echo shellInodes();
+  chdir($safepath);
+  ?></pre>
+  <?php
+  }
+  }
+?>
+    </div>
 
-<pre><h3>Display Inode Count for: <br><?php $inode = shell_exec('cd .. && find . -printf "%h\n" | cut -d/ -f-2 | sort | uniq -c | sort -rn');echo $inode?></h3></pre>
 
-<pre><h3>Total Size of Install Directory</h3><?php
-function dataSize()
-{
-$Bytes = disk_total_space(ABSPATH);
-$Type=array("", "kilo", "mega", "giga", "tera");
-$counter=0;
-while($Bytes>=1024)
-{
-$Bytes/=1024;
-$counter++;
-}
-return("".$Bytes." ".$Type[$counter]."bytes");
-}
+
+
+</div>
+</div>
+<div class="container col-xs-6">
+<div class="panel panel-default">
+    <div class="panel-heading">Display Current .htaccess File</div>
+  <div class="panel-body"><pre><?php echo file_get_contents(ABSPATH.'.htaccess');?></pre></div>
+
+
+
+  <div class="panel-heading">Page List</div>
+  <div class="panel-body"><?php echo pageIds()?></div>
+
+
+  <div class="panel-heading">Post List</div>
+  <div class="panel-body"><?php echo postIds()?></div>
+
+
+  <div class="panel-heading">Admin Users List</div>
+  <div class="panel-body"><?php echo adminUsers()?></div>
+
+
+
+  <div class="panel-heading">Current Active Plugins</div>
+  <div class="panel-body"><?php echo activePlugins()?></div>
+  
+  
+
+
+
+  <div class="panel-heading">Display Inode Count for: <?php echo ABSPATH?></div>
+  <div class="panel-body"><pre><?php phpInodes();
+echo returnAllDirs();
+
+  ?></pre></div>
+
+  <pre><h3>Total Size of Install Directory</h3><?php 
 echo dataSize();
 ?></pre>
 
-<pre><?php
+<pre><?php 
 $Mydir = ABSPATH;
 
 foreach(glob($Mydir.'*', GLOB_ONLYDIR) as $dir) {
@@ -114,8 +112,23 @@ foreach(glob($Mydir.'*', GLOB_ONLYDIR) as $dir) {
     echo $dir.'<br>';
 }
 ?></pre>
-<pre><?php echo realpath(ABSPATH)?></pre>
-<pre><?php print_r(@get_defined_constants());?></pre>>
+
+<pre><h3>Beta area for testing new php</h3>
+<?php echo fileArray()?>
+
+<h3>Database Information - WPDB Object</h3>
+<?php echo userCount()?>
+
+
+<h3>New Dirs Function</h3>
+<?php echo newDirs()?>
+<br><br><br>
+<?php print_r(dirToArray(ABSPATH))?>
+
+</pre>
+  
 </div>
 </div>
+
+
 
