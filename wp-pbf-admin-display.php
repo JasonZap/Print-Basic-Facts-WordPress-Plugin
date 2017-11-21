@@ -38,29 +38,57 @@ echo systemsCheck();
 		<div class="panel-heading">Display File System for: <?php echo ABSPATH?></div>
 		<div class="panel-body"><pre><?php echo fileSystemShell()?></pre></div>
 
-<div class="panel-heading">Functions</div>
-    <div class="panel-body">
-      <form action="" method="Post">
-    
-  <input type="submit" name="inodes" value="Display Inodes Usage"><br>
-</form>
-<?php 
-if(!is_callable('shell_exec')||(strpos(ini_get('disable_functions'), 'shell_exec') === true)){
+<div class="container-fluid">
+	<div class="panel panel-default">
+    <div class="panel-heading">Retreive File Count / Inodes Usage</div>
+    <div class="panel-body"><?php 
+// 3rd line down from the start 
+    if(!is_callable('shell_exec')||(strpos(ini_get('disable_functions'), 'shell_exec') === true)){
       return '<h3>Shell Features Are Disabled. No Inode Count Functionality!</h3>';
-    } else {
-if (isset($_POST['inodes'])&&!empty($_POST['inodes'])){
-  ?>
-  <pre><?php
-  $safepath=getcwd();
+    } else { ?>
+    <form action="" method="Post">
+      <input type="submit" class="btn btn-primary" name="inodesAboveRoot" value="Above Install Dir">
+      <input type="submit" class="btn btn-primary" name="inodesRoot" value="Install Dir">
+      <input type="submit" class="btn btn-primary" name="inodesContent" value="Wp-Content">
+      <input type="submit" class="btn btn-primary" name="inodesPlugins" value="Plugins">
+      <input type="submit" class="btn btn-primary" name="inodesThemes" value="Themes"><br>
+    </form><?php } ?>
+   <?php 
+    switch(true){
+    case isset($_POST['inodesAboveRoot'])&&!empty($_POST['inodesAboveRoot']):
+      $safepath=getcwd();
+  chdir(ABSPATH);
+  chdir('../');
+  echo shellInodes();
+  chdir($safepath);
+    break;
+    case isset($_POST['inodesContent'])&&!empty($_POST['inodesContent']):
+      $safepath=getcwd();
+  chdir(WP_CONTENT_DIR);
+  echo shellInodes();
+  chdir($safepath);
+    break;
+    case isset($_POST['inodesRoot'])&&!empty($_POST['inodesRoot']):
+      $safepath=getcwd();
   chdir(ABSPATH);
   echo shellInodes();
   chdir($safepath);
-  ?></pre>
-  <?php
-  }
-  }
+    break;
+    case isset($_POST['inodesPlugins'])&&!empty($_POST['inodesPlugins']):
+      $safepath=getcwd();
+  chdir(WP_PLUGIN_DIR);
+  echo shellInodes();
+  chdir($safepath);
+    break;
+    case isset($_POST['inodesThemes'])&&!empty($_POST['inodesThemes']):
+      $safepath=getcwd();
+  chdir(WP_CONTENT_DIR.DIRECTORY_SEPARATOR.'themes');
+  echo shellInodes();
+  chdir($safepath);
+    break;
+}
 ?>
-    </div>
+</div></div></div>
 
 
 
