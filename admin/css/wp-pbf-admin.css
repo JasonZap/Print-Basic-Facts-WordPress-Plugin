@@ -2,3 +2,11 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+
+
+.function-block-container{
+	border: 1px solid black;
+    padding: 10px;
+    min-height: 300px;
+}

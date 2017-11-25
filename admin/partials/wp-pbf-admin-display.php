@@ -33,18 +33,37 @@ echo systemsCheck();
 <div class="wrap" style=>
 	<span>
 	<img src="https://jawordpressorg.github.io/wapuu/wapuu-archive/basile-wapuu.png" height="120px" width="120px" alt="Wapu" style="float: left;" caption="WordPress Print Basic Facts">
-	<h1 style="position: relative;padding: 49px 0px 20px;">WordPress Print Basic Facts</h1>
+  <h1 style="position: relative;padding: 49px 0px 20px;">WordPress Print Basic Facts</h1>
 </span>
 <!--Any content above this block is likely permanenet.-->
 
 <!--Here we have a table block that I intend to use for all display features moving forward. -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="function-block-container">
+        <pre><?php echo file_get_contents(ABSPATH.'.htaccess');?></pre>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="function-block-container">
+      <?php echo pageIds()?>
+    </div>
+    </div>
+    <div class="col-md-4">
+      <div class="function-block-container">
+      <?php echo postIds()?>
+    </div>
+    </div>
+  </div>
+
 
 <table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th><pre><?php echo file_get_contents(ABSPATH.'.htaccess');?></pre></th>
-      <th><?php echo pageIds()?></th>
-      <th><?php echo postIds()?></th>
+      <th><pre></pre></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
