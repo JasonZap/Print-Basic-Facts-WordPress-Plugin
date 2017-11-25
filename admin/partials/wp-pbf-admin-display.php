@@ -12,10 +12,17 @@
  * @subpackage Wp_Pbf/admin/partials
  */
 ?>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
@@ -39,23 +46,59 @@ echo systemsCheck();
 
 <!--Here we have a table block that I intend to use for all display features moving forward. -->
 <div class="container">
+
   <div class="row">
-    <div class="col-md-4">
-      <div class="function-block-container">
-        <pre><?php echo file_get_contents(ABSPATH.'.htaccess');?></pre>
+    <div class="col s4">
+      <div class="function-block-container card hoverable z-depth-3">
+        <?php echo wpBasicFacts()?>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="function-block-container">
-      <?php echo pageIds()?>
+    <div class="col s4">
+      <div class="function-block-container card hoverable z-depth-3">
+      
     </div>
     </div>
-    <div class="col-md-4">
-      <div class="function-block-container">
-      <?php echo postIds()?>
+    <div class="col s4">
+      <div class="function-block-container card hoverable z-depth-3">
+      
     </div>
     </div>
   </div>
+
+  <div class="row">
+    <ul class="collapsible" data-collapsible="accordion">
+    <li>
+    <div class="collapsible-header"> .htaccess</div>
+    <div class="collapsible-body"><span><pre><?php echo file_get_contents(ABSPATH.'.htaccess');?></pre></span></div>
+    </li>
+    <li>
+    <div class="collapsible-header"> Post/Pages</div>
+    <div class="collapsible-body"><span>
+      <div class="row">
+      <div class="col s6">
+        <?php echo pageIds()?>
+      </div>
+      <div class="col s6">
+        <?php echo postIds()?>
+      </div>
+      </div>
+    </span></div>
+    </li>
+    <li>
+    <div class="collapsible-header"> Admin Users</div>
+    <div class="collapsible-body"><span><?php echo adminUsers()?></span></div>
+    </li>
+    <li>
+    <div class="collapsible-header"> Admin Users</div>
+    <div class="collapsible-body"><span><?php echo activePlugins()?></span></div>
+    </li>
+
+
+
+    </ul>
+  </div>
+
+
 
 
 <table class="table table-hover table-bordered">
@@ -68,9 +111,9 @@ echo systemsCheck();
   </thead>
   <tbody>
     <tr>
-      <td><?php echo adminUsers()?></td>
-      <td><?php echo activePlugins()?></td>
-      <td><?php echo wpBasicFacts()?></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>Jacob</td>
