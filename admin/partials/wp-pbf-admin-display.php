@@ -101,32 +101,6 @@ echo systemsCheck();
 
 
 
-<table class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th><pre></pre></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-
 
 <!--End of table block customizations. -->
 
