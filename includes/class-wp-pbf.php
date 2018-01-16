@@ -3,21 +3,19 @@
 /**
  * The file that defines the core plugin class
  *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
+ * A class definition that includes attributes and functions used with the admin area of the site.
  *
  * @link       https://github.com/paranoia1906/
  * @since      1.0.0
  *
  * @package    Wp_Pbf
- * @subpackage Wp_Pbf/includes
+ * @subpackage Wp_Pbf/get_included_files()
  */
 
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
+ * This is used to define internationalization and admin-specific hooks.
  *
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
@@ -25,7 +23,7 @@
  * @since      1.0.0
  * @package    Wp_Pbf
  * @subpackage Wp_Pbf/includes
- * @author     Anthony <Ledesma>
+ * @author     Anthony Ledesma
  */
 class Wp_Pbf {
 
@@ -61,14 +59,13 @@ class Wp_Pbf {
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
+	 * Load the dependencies, define the locale, and set the hooks for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+		if ( defined( 'PRINT_BASIC_FACTS_VERSION' ) ) {
+			$this->version = PRINT_BASIC_FACTS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -77,7 +74,7 @@ class Wp_Pbf {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
+		
 
 	}
 
@@ -89,7 +86,6 @@ class Wp_Pbf {
 	 * - Wp_Pbf_Loader. Orchestrates the hooks of the plugin.
 	 * - Wp_Pbf_i18n. Defines internationalization functionality.
 	 * - Wp_Pbf_Admin. Defines all hooks for the admin area.
-	 * - Wp_Pbf_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -115,12 +111,6 @@ class Wp_Pbf {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-pbf-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-pbf-public.php';
 
 		$this->loader = new Wp_Pbf_Loader();
 
@@ -157,29 +147,13 @@ class Wp_Pbf {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-// Add menu item
-$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+		// Add menu item
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 
-// Add Settings link to the plugin
-$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
-$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+		// Add Settings link to the plugin
+		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
 
-
-	}
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Wp_Pbf_Public( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 

@@ -18,14 +18,12 @@
  * @since      1.0.0
  * @package    Wp_Pbf
  * @subpackage Wp_Pbf/includes
- * @author     Anthony <Ledesma>
+ * @author     Anthony Ledesma
  */
 class Wp_Pbf_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Enable PBF Settings. 
 	 *
 	 * @since    1.0.0
 	 */

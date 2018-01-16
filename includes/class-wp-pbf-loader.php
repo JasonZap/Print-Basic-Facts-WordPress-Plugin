@@ -19,7 +19,7 @@
  *
  * @package    Wp_Pbf
  * @subpackage Wp_Pbf/includes
- * @author     Anthony <Ledesma>
+ * @author     Anthony Ledesma
  */
 class Wp_Pbf_Loader {
 

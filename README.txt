@@ -1,103 +1,42 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: https://github.com/paranoia1906/
-Tags: Basic, Facts
-Requires at least: 3.0.1
-Tested up to: 4.8.3
+Contributors: paranoia1906
+Tags: Diagnostics, Tools, Troubleshooting, wp-config reader, Filecount, .htaccess
+Requires at least: 4.8.3
+Tested up to: 4.9.1
 Stable tag: 4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordPress - Print Basic Facts plugin. This tool will serve the purpose of providing a glimplse into several aspects important to proper troubleshooting. More features will follow. Please send feedback to anthonymledesma@gmail.com
+Print Basic Facts will Instantly pull valuable, time saving, information for a WordPress site. Optimize your troubleshooting effors with this lighweight application. Please send feedback or bugs to anthonymledesma@gmail.com
 
 == Description ==
 
-WordPress Print Basic Facts plugin. Features of this plugin currently include display of PHP and MySql version. Show connection string details and display current install directory file system including hidden files, Display of current htaccess file content. Indication of inode count for directories in the installation directory(soon to include additional functionality). Database queris to identify all admin users as well as total user count. Display of all pages and posts with links to pages(Does not work if post is in draft/not yet published).
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+WordPress Print Basic Facts plugin. A Lightweight diagnostics tool with intention to save time for website technitions to quickly review a working site for potential issues. This plugin will display important WordPress variables like child themes or forced redirects. Quickly view wp-config and htaccess server control file to spot improper configuration. Show connection string details and show file count and size of the WordPress installation. Display of current htaccess file content. Database queries to identify all admin users as well as total user count and active plugins. Display of all published pages and posts with links to pages
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+Steps to install WordPress - Print Basic Facts plugin:
 
-e.g.
+1. Download the wp-pbf.zip file to loacl computer.
+2. Login as an administrator on a WordPress website. 
+3. From the plugins menu, click 'Add New' button, then 'Upload Plugin', after that click 'Choose File'. 
+4. From here locate'wp-pbf.zip file and install. 
+5. Activate the plugin through the 'Plugins' menu in WordPress
 
-1. Upload `wp-pbf.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+Plugin menu is accesible under Dashboard navigation menu item titled Print Basic Facts.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Is this compatible on all hosting providers? =
 
-An answer to that question.
+Not at this time. What lacks is support to read web.config files for Windows hosting environments.
 
-= What about foo bar? =
+= Are there any additonal functionalies you plan to add? =
 
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+I have plans to develop features to create replicas of files and database settings on command. This would enable a technician working on a WordPress website to more quickly backup important content before making changes. Additionally I would like to implement WordPress Setting API with my next major release of this plugin.
 
 == Changelog ==
 
 = 1.0 =
-* Original release. More to follow. 
+* Original release. Features include: Viewing file contents on hosting environemnet including file count size and contents of wp-config.php and .htaccess server control file. Execute phpinfo() function to compare software requirements with actual settings. Display database specified information to assist with issue diagnosis. Click-to-copy text fields rendered by the plugin. 
 
-
-== Upgrade Notice ==
-
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`

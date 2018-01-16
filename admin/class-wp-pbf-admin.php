@@ -13,12 +13,12 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
+ * Defines the plugin name, version, hooks to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    Wp_Pbf
  * @subpackage Wp_Pbf/admin
- * @author     Anthony <Ledesma>
+ * @author     Anthony Ledesma
  */
 class Wp_Pbf_Admin {
 
@@ -54,25 +54,17 @@ class Wp_Pbf_Admin {
 
 	}
 
-	/**
+/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Pbf_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wp_Pbf_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
+	public function enqueue_styles($hook) {
+		if($hook != 'toplevel_page_wp-pbf') {
+			return;
+		}
+		wp_enqueue_style( 'pbf_fawesome_stylesheet', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'pbf_materialize_stylesheet', plugin_dir_url( __FILE__ ) . 'css/materialize.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-pbf-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -82,36 +74,31 @@ class Wp_Pbf_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts($hook) {
+		if($hook != 'toplevel_page_wp-pbf') {
+			return;
+		}
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Pbf_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wp_Pbf_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
+		wp_enqueue_script( 'pbf_materialize_script_file', plugin_dir_url( __FILE__ ) . 'js/materialize.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'pbf_clipboard_script_file', plugin_dir_url( __FILE__ ) . 'js/clipboard.min.js', array( 'jquery' ), $this->version, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-pbf-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_add_inline_script( 'pbf_clipboard_script_file' , "var clipboard = new Clipboard('.cpy-button');
+    clipboard.on('success', function(e) {
+        Materialize.toast('Copied!', 4000);
+    });
+    clipboard.on('error', function(e) {
+        Materialize.toast('Press Ctrl + C to Copy!', 4500);
+    });" );
 	}
+
 
 public function add_plugin_admin_menu() {
 
     /*
-     * Add a settings page for this plugin to the Settings menu.
-     *
-     * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-     *
-     *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-     *
+     * Add a settings page for this plugin to the primary WP menu
      */
-    add_options_page( 'WordPress - Print Basic Facts', 'WP Print Basic Facts', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
-    );
+    add_menu_page( 'WordPress - Print Basic Facts', 'Print Basic Facts', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), 'dashicons-hammer', '80.1'
+    ); 
 }
 
  /**
