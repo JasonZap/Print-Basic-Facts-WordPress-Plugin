@@ -1,8 +1,10 @@
 === Plugin Name ===
+Print Basic Facts
 Contributors: paranoia1906
 Tags: Diagnostics, Tools, Troubleshooting, wp-config reader, File count, .htaccess
 Requires at least: 4.8.3
 Tested up to: 4.9.1
+Requires PHP: 5.6
 Stable tag: 4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
