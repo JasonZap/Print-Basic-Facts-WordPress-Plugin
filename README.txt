@@ -3,9 +3,9 @@ Print Basic Facts
 Contributors: paranoia1906
 Tags: Diagnostics, Tools, Troubleshooting, wp-config reader, File count, .htaccess
 Requires at least: 4.8.3
-Tested up to: 4.9.1
+Tested up to: 4.9.2
 Requires PHP: 5.6
-Stable tag: trunk
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,17 +13,17 @@ Print Basic Facts will display valuable, time saving, information for a WordPres
 
 == Description ==
 
-Time saving diagnostic tool valuable for any technical investigation.  This plugin will display important WordPress variables like child themes or forced redirects.  Quickly view wp-config and htaccess server control file to spot improper configuration.  Show connection string details and show file count and size of the WordPress installation.  Database queries to identify all admin users as well as total user count and active plugins and a listing of all published pages and posts.
+Time saving diagnostic tool valuable for any investigation.  View wp-config,  htaccess, file count and total size of the WordPress installation.  
 
 == Installation ==
 
 Steps to install WordPress - Print Basic Facts plugin:
 
-1. Download the wp-pbf.zip file to local computer.
+1. Download the 'print-basic-facts.zip' file to local computer.
 2. Login as an administrator on a WordPress website. 
 3. From the plugins menu, click 'Add New' button, then 'Upload Plugin', after that click 'Choose File'. 
-4. From here locate'wp-pbf.zip file and install. 
-5. Activate the plugin through the 'Plugins' menu in WordPress
+4. From here locate 'print-basic-facts.zip' file and install. 
+5. Activate the plugin through the 'Plugins' menu in WordPress.
 
 Plugin menu is accessible under Dashboard navigation menu item titled Print Basic Facts.
 
@@ -33,11 +33,25 @@ Plugin menu is accessible under Dashboard navigation menu item titled Print Basi
 
 Not at this time. What lacks is supporting viewing of web.config files for Windows hosting environments.
 
-= Are there any additional functionalizes you plan to add? =
+= Are there any additional functionalities you plan to add? =
 
-I have plans to develop features to create replicas of files and database settings on command. This would enable a technician working on a WordPress website to more quickly backup important content before making changes. Additionally I would like to implement WordPress Setting API with my next major release of this plugin.
+I have plans to develop features to create replicas of files and database settings on command. This would enable a website technician to more quickly backup important content before making changes. Additionally I would like to implement WordPress Setting API with my next major release of this plugin.
+
+
 
 == Changelog ==
 
+= 1.1 =
+* Corrected a few spelling mistakes and added additional wordbreak css to help with smaller display text overlap.
+
 = 1.0 =
-* Original release. Features include: Viewing file contents on hosting environment including file count size and contents of wp-config.php and .htaccess server control file. Execute phpinfo() function to compare software requirements with actual settings. Display database specified information to assist with issue diagnosis. Click-to-copy text fields rendered by the plugin. 
+* Original release. Features include:
+* Viewing file contents on hosting environment including file count size and contents of wp-config.php and .htaccess
+* Execute phpinfo() function to compare software requirements with actual settings.
+* Display database specified information to assist with issue diagnosis.
+* Click-to-copy text fields rendered by the plugin.
+
+== Upgrade Notice ==
+
+= 1.1 =
+* This update improves user experience. Corrected a few spelling mistakes and added additional wordbreak css to help with smaller display text overlap.

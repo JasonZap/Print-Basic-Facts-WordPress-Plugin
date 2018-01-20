@@ -67,15 +67,13 @@ class Wp_Pbf {
 		if ( defined( 'PRINT_BASIC_FACTS_VERSION' ) ) {
 			$this->version = PRINT_BASIC_FACTS_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.1.0';
 		}
 		$this->plugin_name = 'wp-pbf';
 
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		
-
 	}
 
 	/**

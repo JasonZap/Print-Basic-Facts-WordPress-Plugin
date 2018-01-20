@@ -98,7 +98,7 @@ public function add_plugin_admin_menu() {
      * Add a settings page for this plugin to the primary WP menu
      */
     add_menu_page( 'WordPress - Print Basic Facts', 'Print Basic Facts', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), 'dashicons-hammer', '80.1'
-    ); 
+    );
 }
 
  /**
