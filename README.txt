@@ -9,11 +9,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Print Basic Facts will Instantly pull valuable, time saving, information for a WordPress site. Optimize your troubleshooting efforts with this lightweight application. Please send feedback or bugs to anthonymledesma@gmail.com
+Print Basic Facts will display valuable, time saving, information for a WordPress site. Optimize your troubleshooting efforts with this lightweight application. Please send feedback or bugs to anthony@ledesma.tech.
 
 == Description ==
 
-WordPress Print Basic Facts plugin. A Lightweight diagnostics tool with intention to save time for website technicians to quickly review a working site for potential issues. This plugin will display important WordPress variables like child themes or forced redirects. Quickly view wp-config and htaccess server control file to spot improper configuration. Show connection string details and show file count and size of the WordPress installation. Display of current htaccess file content. Database queries to identify all admin users as well as total user count and active plugins. Display of all published pages and posts with links to pages
+Time saving diagnostic tool valuable for any technical investigation.  This plugin will display important WordPress variables like child themes or forced redirects.  Quickly view wp-config and htaccess server control file to spot improper configuration.  Show connection string details and show file count and size of the WordPress installation.  Database queries to identify all admin users as well as total user count and active plugins and a listing of all published pages and posts.
 
 == Installation ==
 
