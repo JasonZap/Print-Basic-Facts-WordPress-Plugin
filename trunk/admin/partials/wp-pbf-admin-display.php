@@ -22,14 +22,52 @@ include (plugin_dir_path(dirname(__DIR__)) . 'includes/wp-pbf-functions.php');
 <div class="row"> <!-- Row is for the basic facts cards. -->
   <div class="col s4"> <!-- 1st col -->
     <div class="function-block-container card hoverable z-depth-3">
-      <span class="CpyConStrSoftwar"><?php echo pbf_connection_strings(); echo pbf_software_versions();?></span>
+      <span class="CpyConStrSoftware">
+        <?php //open php block for info card.
+        $conStringsArray = pbf_connection_strings();
+        printf("<p class='card-heading'><b>Connection Strings</b></p><br />
+              <b>Database Name: </b>%s<br />
+              <b>Database User: </b>%s<br />
+              <b>Database Password: </b> <span style='display: none;' id='passSpan'>%s</span><span id='fassSpan'> ******** </span><br />
+              <b>Database Host: </b>%s<br />
+              <b>Database Port: </b>%s<br />", 
+              $conStringsArray[0],$conStringsArray[1],
+              $conStringsArray[2],$conStringsArray[3],
+              $conStringsArray[4]);
+
+        $softwareArray = pbf_software_versions();
+        printf("<p class='card-heading'><b>Software</b></p><br />
+              <b>Current PHP Version: </b>%s<br />
+              <b>Current WP Version: </b>%s<br />
+              <b>Current DB Version: </b>%s<br />
+              <b>PHP Sepcified OS: </b>%s<br />", 
+              $softwareArray[0], $softwareArray[1], 
+              $softwareArray[2], $softwareArray[3]); 
+        ?> <!--Closing php block for info card -->
+      </span>
       <label><input type="checkbox" id="passCheckBox" onclick="passToggle()">Show Password</label>
     </div>
-    <button class="btn cpy-button waves-effect waves-yellow blue darken-2" data-clipboard-target=".CpyConStrSoftwar"><i class="fa fa-clipboard"></i> Copy </button>
+    <button class="btn cpy-button waves-effect waves-yellow blue darken-2" data-clipboard-target=".CpyConStrSoftware"><i class="fa fa-clipboard"></i> Copy </button>
    </div> <!-- End 1st col -->
   <div class="col s4"> <!-- 2nd col -->
     <div class="function-block-container card hoverable z-depth-3">
-      <span id="CpyWpElements"><?php echo pbf_install_defined()?></span>
+      <span id="CpyWpElements"><?php 
+      $wpDefinedArray = pbf_install_defined();
+      printf("<p class='card-heading'><b>WordPress Defined</b></p><br />
+            <b>WP Defined Absolute Path: </b>%s<br />
+            <b>Current Upload_Path is: </b>%s<br />
+            <b>Current Wp-Content Dir: </b>%s<br />
+            <b>Current Template (Theme): </b>%s<br />
+            <b>Current Stylesheet (Child): </b>%s<br />
+            <b>Force_Ssl_Admin Status is: </b>%s<br />
+            <b>Wp_Debug Status is: </b>%s<br />
+            <b>Disallow_File_Edit Status is: </b>%s<br />
+            <b>Admin_Email is: </b>%s<br />", 
+            $wpDefinedArray[0],$wpDefinedArray[1],$wpDefinedArray[2],
+            $wpDefinedArray[3],$wpDefinedArray[4],$wpDefinedArray[5],
+            $wpDefinedArray[6],$wpDefinedArray[7],$wpDefinedArray[8]);
+      ?>
+      </span>
     </div>
     <button class="btn cpy-button waves-effect waves-yellow blue darken-2" data-clipboard-target="#CpyWpElements"><i class="fa fa-clipboard"></i> Copy </button>
   </div> <!-- End 2nd col -->
@@ -81,7 +119,9 @@ include (plugin_dir_path(dirname(__DIR__)) . 'includes/wp-pbf-functions.php');
             <?php echo pbf_admin_users();?>
           </div>
             <div class="col s6"> <!-- Right is total users count -->
-              <?php echo pbf_user_count();?>
+              <?php 
+              printf("Total Users Count: %s",pbf_user_count());
+              ?>
             </div>
         </div> <!-- Close of row to devide collapsible -->
       </div> <!-- Close Colpasable Body -->

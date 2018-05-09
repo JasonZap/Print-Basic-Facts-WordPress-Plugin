@@ -71,36 +71,11 @@ function pbf_software_versions(){ // Function will display the predefined values
 	global $wp_db_version;
 	global $wp_version;
 	global $wpdb;
-	echo ('<p class="card-heading"><b>Software</b></p><br />
-		<b>Current PHP Version:</b> '.phpversion().'<br />
-		<b>Current WP Version: </b>'.$wp_version.'<br />
-		<b>Current DB Version: </b>'.esc_textarea($wpdb->get_var( "SELECT version()" )).'<br />
-		<b>PHP Specified OS:</b> '.PHP_OS.'<br /><br />');
-}
-
-function pbf_install_defined(){
-    $uploadpath = get_option('upload_path');
-	if ($uploadpath != NULL){define('PBF_UP_PATH', $uploadpath);} else {define('PBF_UP_PATH', "Not Set");}
-    if(defined('FORCE_SSL_ADMIN')){
-        if (FORCE_SSL_ADMIN != 1) {define('PBF_FORCESSL', "Disabled");} 
-        else {define('PBF_FORCESSL', "Enabled");}
-    } else {define('PBF_FORCESSL', "Disabled");}
-	if (WP_DEBUG != 1) {define('PBF_BUGSTAT', "Disabled");} else {define('PBF_BUGSTAT', "Enabled");}
-    if(defined('DISSALLOW_FILE_EDIT')){
-        if (DISALLOW_FILE_EDIT != 1) {define('PBF_FILEEDIT', "Disabled - Editor is accessible");}else {define('PBF_FILEEDIT', "Enabled - Editor is <u>not</u> accesible");}
-    } else {define('PBF_FILEEDIT', "Disabled - Editor is accessible");}
-	echo (
-	   '<p class="card-heading"><b>WordPress Defined</b></p><br />
-		<b>WP Defined Absolute Path:</b> '.ABSPATH.'<br />
-		<b>Current Upload_Path is:</b> '.PBF_UP_PATH.'<br />
-		<b>Current Wp-Content Dir:</b> '.WP_CONTENT_DIR.'<br />
-		<b>Current Template (Theme):</b> '.(substr(TEMPLATEPATH, strrpos(TEMPLATEPATH, "/") +1)).'<br />
-		<b>Current Stylesheet (Child):</b> '.(substr(STYLESHEETPATH, strrpos(STYLESHEETPATH, "/") +1)).'<br />
-		<b>Force_Ssl_Admin Status is:</b> '.PBF_FORCESSL.'<br />
-		<b>Wp_Debug Status is:</b> '.PBF_BUGSTAT.'<br />
-		<b>Disallow_File_Edit Status is:</b> '.PBF_FILEEDIT.'<br />
-		<b>Admin_Email is:</b> '.get_option('admin_email').'<br />'
-	);	
+	$phpVers = phpversion();
+	$wpVers = $wp_version;
+	$escTextArea = esc_textarea($wpdb->get_var( "SELECT version()" ));
+	$phpOS = PHP_OS;
+	return [$phpVers, $wpVers, $escTextArea, $phpOS];
 }
 
 function pbf_connection_strings(){
@@ -110,15 +85,37 @@ function pbf_connection_strings(){
     } else {
         define('PBF_DBHOST', substr(DB_HOST, 0 ,strpos(DB_HOST, ":")));	
         define('PBF_DBPORT', substr(DB_HOST, strpos(DB_HOST, ":") + 1));}
-	echo (
-		'<p class="card-heading"><b>Connection Strings</b></p><br />
-		<b>Database Name:</b> '.esc_textarea(DB_NAME).'<br />
-		<b>Database User:</b> '.esc_textarea(DB_USER).'<br />
-		<b>Database Password:</b> <span style="display: none;" id="passSpan">'.esc_textarea(DB_PASSWORD).'</span><span id="fassSpan"> ******** </span><br />
-		<b>Database Host:</b> '.esc_textarea(PBF_DBHOST).'<br />
-		<b>Database Port:</b> '.esc_textarea(PBF_DBPORT).'<br />'
-	);
+	
+        return [esc_textarea(DB_NAME),
+        	esc_textarea(DB_USER),
+        	esc_textarea(DB_PASSWORD),
+        	esc_textarea(PBF_DBHOST),
+        	esc_textarea(PBF_DBPORT)];
 }
+
+function pbf_install_defined(){
+    $uploadpath = get_option('upload_path');
+	$uploadpath != NULL ? define('PBF_UP_PATH', $uploadpath) : define('PBF_UP_PATH', "Not Set");
+	$pbfTheme = substr(TEMPLATEPATH, strrpos(TEMPLATEPATH, "/") +1);
+	$pbfChild = substr(STYLESHEETPATH, strrpos(STYLESHEETPATH, "/") +1);
+	WP_DEBUG != 1 ? define('PBF_BUGSTAT', "Disabled") : define('PBF_BUGSTAT', "Enabled");
+
+    if(defined('FORCE_SSL_ADMIN') && FORCE_SSL_ADMIN == 1){
+    	define('PBF_FORCESSL', "Enabled");
+    } else {
+    	define('PBF_FORCESSL', "Disabled");
+    }
+	
+    if(defined('DISSALLOW_FILE_EDIT') && DISALLOW_FILE_EDIT == 1 ){
+    	define('PBF_FILEEDIT', "Enabled - Editor is <u>not</u> accesible");
+    } else {
+    	define('PBF_FILEEDIT', "Disabled - Editor is accessible");
+    }	
+    
+	return [ABSPATH, PBF_UP_PATH, WP_CONTENT_DIR, $pbfTheme, $pbfChild, PBF_FORCESSL, PBF_BUGSTAT, PBF_FILEEDIT, get_option('admin_email')];	
+}
+
+
 
 function pbf_active_plugins_value() {
     global $wpdb; // The following 4 lines are setting the necessary variables. 
@@ -151,7 +148,8 @@ function pbf_ends_with($haystack, $needle){ //Always seems needed.
 
 function pbf_user_count(){ //Should not require preparation. 
     global $wpdb;
-    echo ('Total User Count is '.$wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->users" ));
+    $pbfUserCount = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->users" );
+    return $pbfUserCount;
 }
 
 function pbf_read_install_dir(){

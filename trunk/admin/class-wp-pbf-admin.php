@@ -60,9 +60,10 @@ class Wp_Pbf_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles($hook) {
-		if($hook != 'toplevel_page_wp-pbf') {
-			return;
-		}
+		//echo $hook;
+		//if($hook != 'toplevel_page_wp-pbf') {
+		//	return;
+		//}
 		wp_enqueue_style( 'pbf_fawesome_stylesheet', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'pbf_materialize_stylesheet', plugin_dir_url( __FILE__ ) . 'css/materialize.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-pbf-admin.css', array(), $this->version, 'all' );
@@ -75,9 +76,9 @@ class Wp_Pbf_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts($hook) {
-		if($hook != 'toplevel_page_wp-pbf') {
-			return;
-		}
+		//if($hook != 'toplevel_page_wp-pbf') {
+		//	return;
+		//}
 
 		wp_enqueue_script( 'pbf_materialize_script_file', plugin_dir_url( __FILE__ ) . 'js/materialize.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'pbf_clipboard_script_file', plugin_dir_url( __FILE__ ) . 'js/clipboard.min.js', array( 'jquery' ), $this->version, true );
@@ -97,8 +98,7 @@ public function add_plugin_admin_menu() {
     /*
      * Add a settings page for this plugin to the primary WP menu
      */
-    add_menu_page( 'WordPress - Print Basic Facts', 'Print Basic Facts', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), 'dashicons-hammer', '80.1'
-    );
+    add_submenu_page( 'tools.php', 'Print Basic Facts', 'Print Basic Facts', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'));
 }
 
  /**
