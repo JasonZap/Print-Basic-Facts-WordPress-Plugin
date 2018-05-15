@@ -3,9 +3,9 @@ Print Basic Facts
 Contributors: paranoia1906
 Tags: Diagnostics, Tools, Troubleshooting, wp-config reader, File count, .htaccess
 Requires at least: 4.8.3
-Tested up to: 4.9.4
-Requires PHP: 5.6
-Stable tag: 1.2
+Tested up to: 4.9.5
+Requires PHP: 5.6+
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,9 +20,9 @@ Time saving diagnostic tool valuable for any investigation.  View wp-config,  ht
 Steps to install WordPress - Print Basic Facts plugin:
 
 1. Download the 'print-basic-facts.zip' file to local computer.
-2. Login as an administrator on a WordPress website. 
-3. From the plugins menu, click 'Add New' button, then 'Upload Plugin', after that click 'Choose File'. 
-4. From here locate 'print-basic-facts.zip' file and install. 
+2. Login as an administrator on a WordPress website.
+3. From the plugins menu, click 'Add New' button, then 'Upload Plugin', after that click 'Choose File'.
+4. From here locate 'print-basic-facts.zip' file and install.
 5. Activate the plugin through the 'Plugins' menu in WordPress.
 
 Plugin menu is accessible under Dashboard navigation menu item titled Print Basic Facts.
@@ -35,13 +35,19 @@ Not at this time. What lacks is supporting viewing of web.config files for Windo
 
 = Are there any additional functionalities you plan to add? =
 
-I have plans to develop features to create replicas of files and database settings on command. This would enable a website technician to more quickly backup important content before making changes. Additionally I would like to implement WordPress Setting API with my next major release of this plugin.
+I have plans to develop features to create replicas of files and database settings on command. This would enable a website technician to more quickly backup important content before making changes.
 
 == Changelog ==
 
+= 1.3 =
+* Moved Basic Facts page to Settings > Print Basic Facts.
+* Shift toward functional programming method.
+* Improvements to code maintainability.
+* Settings API integration development work placed on indefinite hold.
+
 = 1.2 =
 * Added handling of undefined constant errors when certain constants are not used within an installation.
-* Corrected a few more spelling mistakes and adjusted some code to be more readable. 
+* Corrected a few more spelling mistakes and adjusted some code to be more readable.
 
 = 1.1 =
 * Corrected a few spelling mistakes and added additional wordbreak css to help with smaller display text overlap.
@@ -54,6 +60,10 @@ I have plans to develop features to create replicas of files and database settin
 * Click-to-copy text fields rendered by the plugin.
 
 == Upgrade Notice ==
+
+= 1.3 =
+* Update is tested with WP version 4.9.5
+* Update improves general code functionality and maintainability.
 
 = 1.2 =
 * Update will remove undefined errors caused by certain website configurations.
