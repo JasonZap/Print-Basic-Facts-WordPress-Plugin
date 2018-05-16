@@ -55,14 +55,17 @@ include (plugin_dir_path(dirname(__DIR__)) . 'includes/wp-pbf-functions.php');
       $wpDefinedArray = pbf_install_defined();
       printf("<p class='card-heading'><b>WordPress Defined</b></p><br />
             <b>WP Defined Absolute Path: </b>%s<br />
-            <b>Current Upload_Path is: </b>%s<br />
             <b>Current Wp-Content Dir: </b>%s<br />
             <b>Current Template (Theme): </b>%s<br />
             <b>Current Stylesheet (Child): </b>%s<br />
-            <b>Force_Ssl_Admin Status is: </b>%s<br />
-            <b>Wp_Debug Status is: </b>%s<br />
-            <b>Disallow_File_Edit Status is: </b>%s<br />
-            <b>Admin_Email is: </b>%s<br />", 
+            <b>Current Upload_Path: </b>%s<br /><br />
+
+            <b>Force_Ssl_Admin Status: </b>%s<br />
+            <b>Disallow_File_Edit Status: </b>%s<br />
+            <b>Wp_Debug Status: </b>%s<br />
+            <b>Admin_Email: </b>%s<br />", 
+            //Do not change array key order. 
+            //Instead adjust value of keys at /includes/wp-pbf-functions.php.
             $wpDefinedArray[0],$wpDefinedArray[1],$wpDefinedArray[2],
             $wpDefinedArray[3],$wpDefinedArray[4],$wpDefinedArray[5],
             $wpDefinedArray[6],$wpDefinedArray[7],$wpDefinedArray[8]);

@@ -4,7 +4,7 @@ Contributors: paranoia1906
 Tags: Diagnostics, Tools, Troubleshooting, wp-config reader, File count, .htaccess
 Requires at least: 4.8.3
 Tested up to: 4.9.5
-Requires PHP: 5.6+
+Requires PHP: 5.6
 Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -25,7 +25,7 @@ Steps to install WordPress - Print Basic Facts plugin:
 4. From here locate 'print-basic-facts.zip' file and install.
 5. Activate the plugin through the 'Plugins' menu in WordPress.
 
-Plugin menu is accessible under Dashboard navigation menu item titled Print Basic Facts.
+Plugin menu is accessible under Dashboard navigation menu item 'Tools' > 'Print Basic Facts'.
 
 == Frequently Asked Questions ==
 
@@ -43,7 +43,7 @@ I have plans to develop features to create replicas of files and database settin
 * Moved Basic Facts page to Dashboard > Tools > Print Basic Facts.
 * Shift toward functional programming method.
 * Improvements to code maintainability.
-* Settings API integration development work placed on indefinite hold.
+* Settings API integration development work placed on hold.
 
 = 1.2 =
 * Added handling of undefined constant errors when certain constants are not used within an installation.

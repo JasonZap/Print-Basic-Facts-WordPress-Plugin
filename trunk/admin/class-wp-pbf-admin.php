@@ -112,7 +112,7 @@ public function add_action_links( $links ) {
     *  Documentation : https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
     */
    $settings_link = array(
-    '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
+    '<a href="' . admin_url( 'tools.php?page=' . $this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
    );
    return array_merge(  $settings_link, $links );
 

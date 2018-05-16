@@ -112,7 +112,8 @@ function pbf_install_defined(){
     	define('PBF_FILEEDIT', "Disabled - Editor is accessible");
     }	
     
-	return [ABSPATH, PBF_UP_PATH, WP_CONTENT_DIR, $pbfTheme, $pbfChild, PBF_FORCESSL, PBF_BUGSTAT, PBF_FILEEDIT, get_option('admin_email')];	
+	return [ABSPATH, WP_CONTENT_DIR, $pbfTheme, $pbfChild, PBF_UP_PATH,
+            PBF_FORCESSL, PBF_FILEEDIT, PBF_BUGSTAT, get_option('admin_email')];	
 }
 
 
