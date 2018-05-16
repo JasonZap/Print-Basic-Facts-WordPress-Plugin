@@ -67,7 +67,7 @@ class Wp_Pbf {
 		if ( defined( 'PRINT_BASIC_FACTS_VERSION' ) ) {
 			$this->version = PRINT_BASIC_FACTS_VERSION;
 		} else {
-			$this->version = '1.3.0';
+			$this->version = '1.3.1';
 		}
 		$this->plugin_name = 'wp-pbf';
 

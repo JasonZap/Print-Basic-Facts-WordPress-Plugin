@@ -13,7 +13,7 @@
  * Plugin Name:       Print Basic Facts
  * Plugin URI:        https://github.com/paranoia1906/wp-pbf
  * Description:       Time saving diagnostic tool valuable for any technical investigation.  This plugin will display important WordPress variables like child themes or forced redirects.  Quickly view wp-config and htaccess server control file to spot improper configuration.  Show connection string details and show file count and size of the WordPress installation.  Database queries to identify all admin users as well as total user count and active plugins and a listing of all published pages and posts. 
- * Version:           1.3.0
+ * Version:           1.3.1
  * Author:            Anthony Ledesma
  * Author URI:        https://github.com/paranoia1906/
  * License:           GPL-2.0+
@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'PRINT_BASIC_FACTS_VERSION', '1.3.0' );
+define( 'PRINT_BASIC_FACTS_VERSION', '1.3.1' );
 
 /**
  * The code that runs during plugin activation.
