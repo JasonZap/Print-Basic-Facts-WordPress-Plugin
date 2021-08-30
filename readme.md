@@ -24,7 +24,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
-Print Basic Facts will display valuable, time saving, information for a WordPress site. Optimize your troubleshooting efforts with this lightweight application. Please send feedback or bugs to anthony@ledesma.tech.
+Print Basic Facts will display valuable, time saving, information for a WordPress site. Optimize your troubleshooting efforts with this lightweight application.
 
 
 == Description ==
